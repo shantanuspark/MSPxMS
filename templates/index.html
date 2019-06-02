@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+
+    <title>MSPxMS Explorer</title>
+</head>
+
+<body>
+    <!-- As a heading -->
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">MSPxMS Explorer</span>
+        </div>
+    </nav>
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form id="fileinfo" enctype="multipart/form-data" onSubmit="return false;">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload the long file</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="longFile" id="inputGroupFile01"
+                                aria-describedby="inputGroupFileAddon01" accept=".txt">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon02">Upload the short file</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="shortFile" id="inputGroupFile02"
+                                aria-describedby="inputGroupFileAddon02" accept=".txt">
+                            <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">Protease threshold </h6>
+                                    <p class="card-text">
+
+                                        <label for="customRange1"></label>
+                                        <span class="badge badge-pill badge-secondary float-right">
+                                        <output id="customRange1_output">3</output>
+                                        </span>
+                                        <input type="range" class="custom-range" name="pt_1" min="0" max="6"
+                                            id="customRange1" oninput="customRange1_output.value = customRange1.value">
+                                        <label for="customRange2"></label>
+                                        <span class="badge badge-pill badge-secondary float-right">
+                                        <output id="customRange2_output">3</output>
+                                        </span>
+                                        <input type="range" class="custom-range" name="pt_2" min="0" max="6"
+                                            id="customRange2" oninput="customRange2_output.value = customRange2.value">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">No enzyme control threshold </h6>
+                                    <p class="card-text">
+                                        <label for="customRange3"></label>
+                                        <span class="badge badge-pill badge-secondary float-right">
+                                        <output id="customRange3_output">3</output>
+                                        </span>
+                                        <input type="range" class="custom-range" name="et_1" min="0" max="6"
+                                            id="customRange3" oninput="customRange3_output.value = customRange3.value">
+                                        <label for="customRange4"></label>
+                                        <span class="badge badge-pill badge-secondary float-right">
+                                        <output id="customRange4_output">3</output>
+                                        </span>
+                                        <input type="range" class="custom-range" name="et_2" min="0" max="6"
+                                            id="customRange4" oninput="customRange4_output.value = customRange4.value">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="mx-auto">
+                            <a class="btn btn-secondary btn-lg" id="analyze-btn" href="#" role="button" style="width: 200px;">Analyze</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <br />
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"> Uploading long files            </div>
+        </div>
+        <div id="results">
+
+        </div>
+        <div id="download-results"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+</body>
+
+</html>

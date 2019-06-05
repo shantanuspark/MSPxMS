@@ -4,7 +4,11 @@ from werkzeug import secure_filename
 import random
 import subprocess
 import pandas as pd
-
+from Bio import motifs,SeqIO
+from Bio.Alphabet import IUPAC
+from Bio.Seq import Seq
+from Bio import Alphabet 
+from Bio.SeqRecord import SeqRecord
 
 app = Flask(__name__)
 
@@ -66,26 +70,16 @@ def read_output(file_name):
    return df.to_json(orient='records')
 
 	
-@app.route('/generate_structure/<file_name>', methods = ['POST'])
-def create_2dStructure(file_name):
-   sequence = request.get_json()
-   with open("uploaded_sequences/"+file_name+".fasta", "w") as output_handle:
-      output_handle.write(">repeat\n"+sequence['seq'])
-
-   if os.path.isfile('uploaded_sequences/'+file_name+'.fasta'):
-      print('file found', 'uploaded_sequences/'+file_name+'.fasta')
-      subprocess.call(['C:\Program Files\RNAstructure6.1\exe\Fold', 'uploaded_sequences/'+file_name+'.fasta', 'uploaded_sequences/'+file_name+'.ct',
-       '--DNA', '--loop' , '30', '--maximum', '20', '--percent', '10', '--temperature', '310.15', '--window', '3'])
-   else:
-      raise Exception()
-
-   if os.path.isfile('uploaded_sequences/'+file_name+'.ct'):
-      subprocess.call(['C:\Program Files\RNAstructure6.1\exe\draw', 'uploaded_sequences/'+file_name+'.ct', 'static/logos/'+file_name+'.svg',
-       '--svg', '-n' , '1'])
-   else:
-      raise Exception()
-
+@app.route('/generate_image/<temp_name>', methods = ['POST'])
+def create_webLogo(temp_name):
+   sequences = request.get_json()['sequences']
+   records = []
+   for rep in sequences:
+      records.append(SeqRecord(Seq(rep, IUPAC.ExtendedIUPACProtein)))
+   SeqIO.write(records, 'data/'+temp_name+'.fa', "fasta")
+   subprocess.call(['weblogo','-f','data/'+temp_name+'.fa','-F','png','-o','static/logos/'+temp_name+'.png','-s','large'])
    return jsonify('{"success":1}')
+
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', debug=True, port=5000)

@@ -46,7 +46,7 @@ def execute(long_filename, short_filename):
    et_2 = request.form.get('et_2')
    print(long_filename, short_filename, pt_1, pt_2, et_1, et_2)
    op_filename = str(randomDigits(9))+'.tsv'
-   subprocess.call(['perl', 'prepare_report.pl', 'data/'+long_filename, 'data/'+short_filename, pt_1, pt_2, et_1, et_2, 'data/'+op_filename])
+   subprocess.call(['C:/Strawberry/perl/bin/perl.exe', './prepare_report.pl', 'data/'+long_filename, 'data/'+short_filename, pt_1, pt_2, et_1, et_2, 'data/'+op_filename])
    return jsonify(op_filename)
 
 @app.route('/clean/<longFile>/<shortFile>/<resultFile>', methods = ['GET'])
@@ -88,5 +88,5 @@ def create_2dStructure(file_name):
    return jsonify('{"success":1}')
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', debug=False, port=5000)
+   app.run(host='0.0.0.0', debug=True, port=5000)
   

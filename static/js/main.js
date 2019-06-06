@@ -270,11 +270,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
             console.log('error')
         },
         success: function() {
-            modal.find('#modal-content').html(`
-            <div class="text-center">
-                <img src="static/logos/`+temp_name+`.png" class="img-fluid" onload="this.width=1.5*this.width;"/>
-            </div>
-            `);
+            var win = window.open(`static/logos/`+temp_name+`.pdf`, '_blank');
+            if (win) {
+                $('#exampleModal').modal('hide')
+                win.focus();
+            } else {
+                alert('Please allow popups for this website');
+            }
         }
       });
      

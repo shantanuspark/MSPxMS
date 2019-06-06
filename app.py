@@ -77,7 +77,7 @@ def create_webLogo(temp_name):
    for rep in sequences:
       records.append(SeqRecord(Seq(rep, IUPAC.ExtendedIUPACProtein)))
    SeqIO.write(records, 'data/'+temp_name+'.fa', "fasta")
-   subprocess.call(['weblogo','-f','data/'+temp_name+'.fa','-F','png','-o','static/logos/'+temp_name+'.png','-s','large'])
+   subprocess.call(['weblogo','-f','data/'+temp_name+'.fa', '-F','PNG','-o','static/logos/'+temp_name+'.png','-s','large'])
    return jsonify('{"success":1}')
 
 

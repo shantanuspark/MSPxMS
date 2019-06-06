@@ -118,6 +118,8 @@ function displayResult(data) {
             }
         },
         exportFile: true,
+        filters: true,
+        dropdownMenu: ['alignment',  '---------', 'filter_by_condition', 'filter_action_bar', 'filter_by_value'],
         headerTooltips: true,
         columns: [
             {
@@ -270,7 +272,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         success: function() {
             modal.find('#modal-content').html(`
             <div class="text-center">
-                <img src="static/logos/`+temp_name+`.png" class="img-fluid" />
+                <img src="static/logos/`+temp_name+`.png" class="img-fluid" onload="this.width=1.5*this.width;"/>
             </div>
             `);
         }

@@ -220,7 +220,7 @@ function displayResult(data) {
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <h6 class="alert-heading">Hint</h6>
             Click on the cloumn name to <strong>sort table</strong> by that column | Right click on any row to
-            <strong>remove row</strong> | Select any protein sequence cells and right click to create <strong>sequence logos</strong>
+            <strong>remove row</strong> | Select any protein sequence cells and right click to create <strong>sequence logo</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

@@ -63,7 +63,6 @@ def clean(longFile,shortFile,resultFile):
 @app.route('/get_content/<file_name>', methods = ['GET'])
 def read_output(file_name):
    df = pd.read_csv('data/'+file_name+'.tsv', delimiter='\t', index_col=False)
-   print(df.head())
    df.columns = ['AccNumber','Sequence Fragment',
       'Occurrences By Time','Occurances in Experimental NEC','Occurrences in NEC',	
       'Best Experimental Score','Best NEC Score', 'a', '0015','0060','0240','b']

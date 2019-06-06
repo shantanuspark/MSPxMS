@@ -270,7 +270,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
             console.log('error')
         },
         success: function() {
-            var win = window.open(`static/logos/`+temp_name+`.pdf`, '_blank');
+            var win = window.open(`static/logos/`+temp_name+`.pdf#view=FitV`, '_blank');
             if (win) {
                 $('#exampleModal').modal('hide')
                 win.focus();
